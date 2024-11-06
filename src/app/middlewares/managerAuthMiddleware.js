@@ -26,4 +26,4 @@ const managerAuthMiddleware = (req, res, next) => {
     }
 }
 
-module.exports = managerAuthMiddleware
+module.exports = {managerAuthMiddleware}
