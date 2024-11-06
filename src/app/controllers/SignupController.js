@@ -39,7 +39,7 @@ const SignupController = async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             secure: true,
-            // sameSite: 'none',
+            sameSite: 'none',
             maxAge: 4 * 60 * 60 * 1000
         })
         res.json({ user: acc1, token: token, role: acc.role })
