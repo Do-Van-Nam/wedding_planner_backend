@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const { getReviewsByAccId,getReviewById, updateReview, deleteReview, createReview } = require('../app/controllers/ReviewController')
-const managerAuthMiddleware = require('../app/middlewares/managerAuthMiddleware')
-const authMiddleware = require('../app/middlewares/authMiddleware')
+const {managerAuthMiddleware} = require('../app/middlewares/managerAuthMiddleware')
+const {authMiddleware} = require('../app/middlewares/authMiddleware')
 
 // router.get('/:id', getReviewById)
 router.get('/:accId',getReviewsByAccId)

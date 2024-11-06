@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const {checkVendorInPlan,toggleVendorInPlan, getPlanByAccId,getPlanById, updatePlan, deletePlan, createPlan } = require('../app/controllers/PlanController')
-const managerAuthMiddleware = require('../app/middlewares/managerAuthMiddleware')
-const authMiddleware = require('../app/middlewares/authMiddleware')
+const {managerAuthMiddleware} = require('../app/middlewares/managerAuthMiddleware')
+const {authMiddleware} = require('../app/middlewares/authMiddleware')
 
 // router.get('/:id', getPlanById)
 router.get('/:accId',getPlanByAccId)

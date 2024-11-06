@@ -4,7 +4,7 @@ const { getBuildingsByOwnerId,getBuildingById, updateBuilding, deleteBuilding, c
 const {managerAuthMiddleware} = require('../app/middlewares/managerAuthMiddleware')
 
 // router.get('/:id', getBuildingById)
-router.get('/:ownerId',managerAuthMiddleWware, getBuildingsByOwnerId)
+router.get('/:ownerId',managerAuthMiddleware, getBuildingsByOwnerId)
 router.post('/', createBuilding)
 router.put('/:id',managerAuthMiddleware, updateBuilding)
 router.delete('/:id',managerAuthMiddleware, deleteBuilding)
