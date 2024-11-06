@@ -1,8 +1,8 @@
 const express = require('express')
 const router  = express.Router()
 const {getAccs,createAcc,updateAcc,deleteAcc,checkAuth} = require('../app/controllers/AccountController')
-const managerAuthMiddleware = require('../app/middlewares/managerAuthMiddleware')
-const authMiddleware = require('../app/middlewares/authMiddleware')
+const {managerAuthMiddleware} = require('../app/middlewares/managerAuthMiddleware')
+const {authMiddleware} = require('../app/middlewares/authMiddleware')
  
 router.get('/check-auth',authMiddleware, checkAuth)
 router.get('/',authMiddleware,getAccs)

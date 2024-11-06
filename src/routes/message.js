@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const {createMultipleMessages,getMessagesByChatRoomId, getMessagesByAccId,getMessageById, updateMessage, deleteMessage, createMessage } = require('../app/controllers/MessageController')
-const managerAuthMiddleware = require('../app/middlewares/managerAuthMiddleware')
-const authMiddleware = require('../app/middlewares/authMiddleware')
+const {managerAuthMiddleware} = require('../app/middlewares/managerAuthMiddleware')
+const {authMiddleware} = require('../app/middlewares/authMiddleware')
 
 // router.get('/:id', getMessageById)
 router.get('/accId/:accId',getMessagesByAccId)
