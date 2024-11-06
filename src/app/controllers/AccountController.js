@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const getAccs = async (req, res) => {
     try {
         const accs = await Account.find({})
-        res.json({ accs: accs })
+        return res.status.json({ accs: accs })
     } catch (error) {
         console.log(error)
         return res.status(400).json({ message: 'Server error' })
@@ -78,7 +78,7 @@ const deleteAcc  = async (req,res)=>{
 }
 
 const checkAuth= async (req,res)=>{
-    res.json({user:req.user})
+   return  res.status(200).json({user:req.user})
 }
 
 module.exports = { getAccs, createAcc , updateAcc ,deleteAcc,checkAuth }
