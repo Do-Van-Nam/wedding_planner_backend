@@ -34,7 +34,7 @@ const port = process.env.PORT
 app.use(cookieParser());
 app.use(bodyParser.json())
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://wedding-planner-frontend-url.railway.app'],
+    origin: ['https://wedding-planner-frontend.up.railway.app/','http://localhost:3000', 'https://wedding-planner-frontend-url.railway.app'],
     credentials:true
 }))
 // {
