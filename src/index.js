@@ -3,7 +3,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
-
+const path = require('path');
 
 const dbaccs = require('./config/db/dbaccs')
 const dbbuildings = require('./config/db/dbbuildings')
@@ -50,6 +50,13 @@ app.options('*', cors()); // Tạo phản hồi cho các yêu cầu OPTIONS từ
 const route = require('./routes')
 route(app)
 
+// Cấu hình thư mục public để phục vụ file tĩnh
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Thiết lập route cho trang chủ
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
