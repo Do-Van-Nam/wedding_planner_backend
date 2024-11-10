@@ -11,6 +11,6 @@ router.post('/:accId/checkVendorInPlan', checkVendorInPlan)
 router.post('/:accId/toggleVendor', toggleVendorInPlan)
 router.post('/', createPlan)
 router.put('/:id', updatePlan)
-router.delete('/:id', deletePlan)
+router.delete('/:id', deletePlan) 
 
 module.exports = router

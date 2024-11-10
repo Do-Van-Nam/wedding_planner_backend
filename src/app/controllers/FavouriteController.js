@@ -123,6 +123,7 @@ const checkVendorInFavourite = async (req,res)=>{
     const {vendorId}  =req.body
 try {
     let favourite = await Favourite.findOne({accId})
+    if(!favourite) return res.status(200).json({exists:false})
     if(favourite.vendors.includes(vendorId)){
         return res.status(200).json({exists:true})
     }

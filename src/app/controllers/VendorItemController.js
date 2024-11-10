@@ -64,14 +64,14 @@ const createVendorItem = async (req, res) => {
         console.error('Error creating vendor item:', error);
         return res.status(500).json({ message: 'Server error' });
     }
-};
+}; 
 
 const createManyVendorItems = async (req, res) => {
-    const vendorItems = req.body;
+    const {vendorItems} = req.body;
     try {
         const result = await VendorItem.insertMany(vendorItems);
         res.status(201).json({ message: 'Vendor items added successfully', data: result });
-    
+     
         
     } catch (error) {
         console.error('Error creating vendor item:', error);
@@ -118,6 +118,24 @@ const deleteVendorItem = async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 };
+
+const deleteVendorItemByType = async (req, res) => {
+    const { type } = req.params;
+    try {
+        const deletedVendorItems = await VendorItem.deleteMany({type:type});
+
+        if (deletedVendorItems.deletedCount ===0) {
+            return res.status(404).json({ message: 'VendorItem not found' });
+        }
+
+        res.json({ message: 'VendorItem successfully deleted' });
+    } catch (error) {
+        console.error('Error deleting vendor item:', error);
+        return res.status(500).json({ message: 'Server error' });
+    }
+};
+
+
 const getVendorItemByPlanGroupByType=async (req,res)=>{
     const {accId}  =req.params
     try {
@@ -145,6 +163,32 @@ const getVendorItemByPlanGroupByType=async (req,res)=>{
     }
 
 }
+const updateFieldInAllItems = async (req, res) => {
+    const { field, newValue } = req.body;  // field là tên trường cần sửa, newValue là giá trị mới
+
+    try {
+        // Kiểm tra xem trường 'field' và 'newValue' có tồn tại trong request body hay không
+        if (!field || !newValue) {
+            return res.status(400).json({ message: "Field or newValue is missing" });
+        }
+
+        // Tạo đối tượng để cập nhật giá trị trường
+        const updateData = {};
+        updateData[field] = newValue;
+
+        // Cập nhật tất cả các bản ghi trong VendorItem
+        const result = await VendorItem.updateMany({}, { $set: updateData });
+
+        if (result.nModified === 0) {
+            return res.status(404).json({ message: 'No documents were updated' });
+        }
+
+        res.json({ message: 'Documents updated successfully', result });
+    } catch (error) {
+        console.error('Error updating documents:', error);
+        return res.status(500).json({ message: 'Server error' });
+    }
+}
 module.exports = {
     getVendorItemsByAccId,
     getVendorItemById,
@@ -153,5 +197,7 @@ module.exports = {
     updateVendorItem,
     deleteVendorItem,
     createManyVendorItems,
-    getVendorItemByPlanGroupByType
+    getVendorItemByPlanGroupByType,
+    deleteVendorItemByType,
+    updateFieldInAllItems
 };

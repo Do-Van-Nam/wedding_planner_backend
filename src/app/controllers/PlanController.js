@@ -49,11 +49,14 @@ const createPlan = async (req, res) => {
 const updatePlan = async (req, res) => {
     const { id } = req.params;
     const {accId,budget,paid,date,partner,vendors,location} = req.body;
+    // Kiểm tra nếu không có id trong params
+    
+
     try {
         const updatedPlan = await Plan.findByIdAndUpdate(
             id,
             {accId,budget,paid,date,partner,vendors,location},
-            { new: true }
+            { new: true ,upsert : true}
         );
 
         if (!updatedPlan) {
@@ -125,6 +128,7 @@ const checkVendorInPlan = async (req,res)=>{
     const {vendorId}  =req.body
 try {
     let plan = await Plan.findOne({accId})
+    if(!plan)  return res.status(200).json({exists:false})
     if(plan.vendors.find(vendor=>vendor.vendorId===vendorId)){
         return res.status(200).json({exists:true})
     }

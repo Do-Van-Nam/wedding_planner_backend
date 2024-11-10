@@ -3,15 +3,15 @@ const Account = require('../models/Account')
 
 
 const getChatRoomByAccId = async (req, res) => {
-    const {accId} = req.params
-    try {
+    const {accId} = req.params 
+    try { 
         let chatrooms = await ChatRoom.find({ $or: [{ user1Id: accId }, { user2Id: accId }] })
-
+ 
         const otherUsers = chatrooms.map((chatroom) => ({
             userId: chatroom.user1Id === accId ? chatroom.user2Id : chatroom.user1Id,
             chatRoomId: chatroom._id
         })).filter(Boolean);
-
+ 
         const userPromises = otherUsers.map(e => Account.findById(e.userId))
         var userData = await Promise.all(userPromises)
         userData = userData.map((e, i) => {
