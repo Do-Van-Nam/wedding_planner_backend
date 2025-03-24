@@ -5,16 +5,16 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
-const dbaccs = require('./config/db/dbaccs')
-const dbbuildings = require('./config/db/dbbuildings')
-const dbrooms = require('./config/db/dbrooms')
-const dbplan = require('./config/db/dbplan')
-const dbfavourite = require('./config/db/dbfavourite')
-const dbvendoritem = require('./config/db/dbvendoritem')
-const dbreview = require('./config/db/dbreview')
-const dbchatroom = require('./config/db/dbchatroom')
-const dbmessage = require('./config/db/dbmessage')
-const dbguest = require('./config/db/dbguest')
+const dbaccs = require('../src/config/db/dbaccs')
+const dbbuildings = require('../src/config/db/dbbuildings')
+const dbrooms = require('../src/config/db/dbrooms')
+const dbplan = require('../src/config/db/dbplan')
+const dbfavourite = require('../src/config/db/dbfavourite')
+const dbvendoritem = require('../src/config/db/dbvendoritem')
+const dbreview = require('../src/config/db/dbreview')
+const dbchatroom = require('../src/config/db/dbchatroom')
+const dbmessage = require('../src/config/db/dbmessage')
+const dbguest = require('../src/config/db/dbguest')
 
 //connect DB
 dbaccs.connect()
@@ -47,7 +47,7 @@ app.use(cors({
 // Handle preflight OPTIONS requests
 app.options('*', cors()); // Tạo phản hồi cho các yêu cầu OPTIONS từ frontend
 
-const route = require('./routes')
+const route = require('../src/routes')
 route(app)
 
 // Cấu hình thư mục public để phục vụ file tĩnh
