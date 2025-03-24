@@ -8,6 +8,9 @@
       "src": "api/index.js",
       "use": "@vercel/node"
     }
-  ]
+  ],
+  "static": {
+    "public": "src/public"
+  }
  
 }

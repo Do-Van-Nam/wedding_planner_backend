@@ -55,8 +55,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Thiết lập route cho trang chủ
 app.get('/', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    res.send("Welcome to Wedding Planner API!");
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    // res.send("Welcome to Wedding Planner API!");
 });
 
 // app.listen(port, () => {
