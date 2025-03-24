@@ -34,7 +34,7 @@ const port = process.env.PORT
 app.use(cookieParser());
 app.use(bodyParser.json())
 app.use(cors({
-    origin: ['https://wedding-planner-frontend.up.railway.app','http://localhost:3000', 'https://wedding-planner-frontend-url.railway.app'],
+    origin: ['https://wedding-planner-frontend.up.railway.app','http://localhost:3000', 'https://wedding-planner-frontend-url.railway.app','https://wedding-planner-frontend-sigma.vercel.app/'],
     credentials:true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Chấp nhận các phương thức yêu cầu
   allowedHeaders: ['Content-Type', 'Authorization'] // Đảm bảo các header cần thiết được phép sử dụng
